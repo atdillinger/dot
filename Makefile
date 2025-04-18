@@ -203,6 +203,12 @@ rust:  ## rustup; rust/cargo
 	mkdir -p $(HOME)/.zfunc/
 	rustup completions zsh cargo > ~/.zfunc/_cargo
 
+# this doesnt work with popos...
+elixir:
+	curl -fsSO https://elixir-lang.org/install.sh
+	sh install.sh elixir@1.18.3 otp@27.2.3
+	rm $(CURDIR)/install.sh
+
 
 .PHONY: help
 help:
