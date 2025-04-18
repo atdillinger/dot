@@ -53,9 +53,6 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
 ENABLE_CORRECTION="true"
 
 export MANPATH="/usr/local/man:$MANPATH"
