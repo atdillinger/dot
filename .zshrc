@@ -79,3 +79,8 @@ setopt DVORAK
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+
+# Elixir
+export PATH=$HOME/.elixir-install/installs/otp/27.2.3/bin:$PATH
+export PATH=$HOME/.elixir-install/installs/elixir/1.18.3-otp-27/bin:$PATH
