@@ -43,8 +43,14 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 fpath+=~/.zfunc
 source $ZSH/oh-my-zsh.sh
-eval "$(direnv hook zsh)"
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# direnv
+# wrap with os check
+if [[ "$OSTYPE" =~ ^linux ]]; then
+    eval "$(direnv hook zsh)"
+fi
+
 
 # rust
 . "$HOME/.cargo/env"
@@ -58,7 +64,16 @@ source "$HOME/.rye/env"
 eval "$(~/.rye/shims/rye self completion -s zsh)"
 
 # ruby
-eval "$(~/.rbenv/bin/rbenv init - zsh)"
+if [[ "$OSTYPE" =~ ^linux ]]; then
+	eval "$(~/.rbenv/bin/rbenv init - zsh)"
+fi
+
+
+# brew (for mac)
+# wrap with os check
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+	export PATH="/opt/homebrew/bin:$PATH" >> ~/.zshrc
+fi
 
 # node/np
 export NVM_DIR="$HOME/.nvm"
