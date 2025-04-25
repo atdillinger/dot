@@ -186,7 +186,7 @@ node:
 	#$(HOME)/.nvm/nvm install node
 
 
-python:  ## Python
+python: ## rye install for python development
 	curl -sSf https://rye.astral.sh/get | bash
 	$(HOME)/.rye/shims/rye config --set-bool behavior.global-python=true
 	curl -LsSf https://astral.sh/uv/install.sh | sh
