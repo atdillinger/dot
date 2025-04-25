@@ -113,8 +113,6 @@ java-linux64:  ## sdkman for java-linux64
 	)
 
 
-scala:
-	curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup
 
 
 java-mac:  ## sdkman for java - mac
