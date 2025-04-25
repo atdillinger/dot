@@ -153,7 +153,7 @@ ruby-mac:  ## ruby - mac
 	rbenv global 3.3.1
 
 
-db-tools:
+sqlite:
 	curl "https://www.sqlite.org/2024/sqlite-tools-linux-x64-3460000.zip" -o "sqlite.zip"
 	unzip sqlite.zip -d $(HOME)/.local/bin/
 	rm sqlite.zip
