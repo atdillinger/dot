@@ -78,9 +78,6 @@ go:
 	rm -rf $(CURDIR)/git-credential-manager
 
 
-node:  ## node
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-	#$(HOME)/.nvm/nvm install node
 
 docker:
 	for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do \
@@ -184,6 +181,9 @@ tools-mac:  # tools-mac
 	brew install direnv jq yq direnv
 	brew install tmux
 	brew install tmuxinator
+node:
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+	#$(HOME)/.nvm/nvm install node
 
 
 python:  ## Python
