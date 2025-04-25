@@ -106,12 +106,6 @@ docker:
 
 
 
-aws:  ## aws cdk
-	npm install -g aws-cdk
-	curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
-	sudo installer -pkg AWSCLIV2.pkg -target /
-
-
 java-linux64:  ## sdkman for java-linux64
 	sudo apt install unzip
 	curl -s "https://get.sdkman.io" | bash
