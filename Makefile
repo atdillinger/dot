@@ -192,10 +192,10 @@ python:  ## Python
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 
-rust:  ## rustup; rust/cargo
+rust: ## rust install
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	mkdir -p $(HOME)/.zfunc/
-	rustup completions zsh cargo > ~/.zfunc/_cargo
+	mkdir -p $(HOME)/.zfunc/;
+	rustup completions zsh cargo > ~/.zfunc/_cargo;
 
 
 .PHONY: help
