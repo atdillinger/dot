@@ -45,7 +45,11 @@ fpath+=~/.zfunc
 source $ZSH/oh-my-zsh.sh
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-eval "$(direnv hook zsh)"
+# direnv
+# wrap with os check
+if [[ "$OSTYPE" =~ ^linux ]]; then
+    eval "$(direnv hook zsh)"
+fi
 
 
 # rust
