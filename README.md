@@ -1,6 +1,5 @@
 # Machine Setup
 
-Started from: <https://github.com/jessfraz/dotfiles>
 
 ## Getting Started
 
@@ -8,9 +7,28 @@ Started from: <https://github.com/jessfraz/dotfiles>
 
 1. `zsh` - `sudo apt install zsh` and `chsh -s $(which zsh)`
 
-Check the recipes available via `make help`
+1. `sudo apt update`
+1. `sudo apt upgrade`
+1. `make linux64-ubuntu`
+1. `make dotfiles`
+1. `make nvim-linux64`
+1. `make go`
+1. `make rust`
+1. `make sqlite`
+1. `make python`
+1. `make node`
+1. `make sdkman`
+1. `make git`
+1. `make git-config`
 
-## Windows
+1. if `popos` then `make popos`
+
+1. if `"$OSTYPE" =~ ^darwin` 
+
+1. if `"$OSTYPE" =~ ^linux` 
+    1. make gcm
+
+Check the recipes available via `make` or `make help`
 
 ### Docker
 
@@ -42,13 +60,4 @@ install iterm2
 # [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 ```
 
-Remove from `.zshrc`
-
-```
-rbenv
-direnv
-```
-
-- [Map Caps Lock to Control Key](https://stackoverflow.com/questions/20146972/is-there-a-way-to-make-alt-f-and-alt-b-jump-word-forward-and-backward-instead-of)
-
-## Git Cred Manager
+> Based on : <https://github.com/jessfraz/dotfiles>
