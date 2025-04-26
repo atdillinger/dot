@@ -9,7 +9,7 @@
 
 1. `sudo apt update`
 1. `sudo apt upgrade`
-1. `make linux64-ubuntu`
+1. `make ubuntu`
 1. `make dotfiles`
 1. `make nvim-linux64`
 1. `make go`
@@ -18,12 +18,15 @@
 1. `make python`
 1. `make node`
 1. `make sdkman`
+`make hugo`
 1. `make git`
 1. `make git-config`
 
 1. if `popos` then `make popos`
 
 1. if `"$OSTYPE" =~ ^darwin` 
+`make mac`
+`make nvim-mac`
 
 1. if `"$OSTYPE" =~ ^linux` 
     1. make gcm
