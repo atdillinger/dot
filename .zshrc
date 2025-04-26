@@ -20,6 +20,9 @@ HISTTIMEFORMAT="%F %T "
 ENABLE_CORRECTION="true"
 
 export LANG=en_US.UTF-8
+export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=true
+export MANPATH="/usr/local/man:$MANPATH"
+
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt ALWAYS_TO_END
@@ -29,15 +32,7 @@ setopt PROMPT_SUBST
 setopt HIST_IGNORE_DUPS
 setopt DVORAK
 
-export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=true
 
-export MANPATH="/usr/local/man:$MANPATH"
-
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-export PATH="$PATH:/usr/bin/nvim-linux64/bin"
-export EDITOR='nvim'
-#
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -45,37 +40,38 @@ fpath+=~/.zfunc
 source $ZSH/oh-my-zsh.sh
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
+# Add binaries to PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# neovim
+# move this to /usr/local/bin
+export PATH="$PATH:/usr/bin/nvim-linux64/bin"
+export EDITOR='nvim'
+
 # direnv
-# wrap with os check
 if [[ "$OSTYPE" =~ ^linux ]]; then
     eval "$(direnv hook zsh)"
 fi
 
-
-# rust
-. "$HOME/.cargo/env"
-
-# jvm
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export SDKMAN_DIR="$HOME/.sdkman"
-
 # python
+# switch with uv
 source "$HOME/.rye/env"
 eval "$(~/.rye/shims/rye self completion -s zsh)"
 
 # ruby
+# remove after website
 if [[ "$OSTYPE" =~ ^linux ]]; then
 	eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fi
 
+# rust
+. "$HOME/.cargo/env"
 
-# brew (for mac)
-# wrap with os check
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-	export PATH="/opt/homebrew/bin:$PATH" >> ~/.zshrc
-fi
+# sdk ie jvm
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
 
-# node/np
+# node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -83,6 +79,8 @@ export NVM_DIR="$HOME/.nvm"
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
-# elixir
-export PATH=$HOME/.elixir-install/installs/otp/27.2.3/bin:$PATH
-export PATH=$HOME/.elixir-install/installs/elixir/1.18.3-otp-27/bin:$PATH
+
+# brew (for mac)
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+	export PATH="/opt/homebrew/bin:$PATH"
+fi
