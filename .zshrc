@@ -43,20 +43,45 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Add binaries to PATH
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# neovim
-# move this to /usr/local/bin
-export PATH="$PATH:/usr/bin/nvim-linux64/bin"
-export EDITOR='nvim'
+# brew (for mac)
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+	export PATH="/opt/homebrew/bin:$PATH"
+fi
 
 # direnv
 if [[ "$OSTYPE" =~ ^linux ]]; then
     eval "$(direnv hook zsh)"
 fi
 
+
+# go
+if which go > /dev/null; then
+	export GOPATH=$HOME/go
+	export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+fi
+
+# kubectl
+if which kubectl > /dev/null; then
+	source <(kubectl completion zsh)
+fi
+
+# neovim
+# move this to /usr/local/bin
+export PATH="$PATH:/usr/bin/nvim-linux64/bin"
+export EDITOR='nvim'
+
+# node
+if [ -d $HOME/.nvm/ ]; then
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+fi
+
 # python
 # switch with uv
-source "$HOME/.rye/env"
-eval "$(~/.rye/shims/rye self completion -s zsh)"
+if [ -d $HOME/.rye/ ]; then
+	source "$HOME/.rye/env"
+	eval "$(~/.rye/shims/rye self completion -s zsh)"
+fi
 
 # ruby
 # remove after website
@@ -65,22 +90,12 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
 fi
 
 # rust
-. "$HOME/.cargo/env"
+if [ -d $HOME/.cargo/ ]; then
+	source "$HOME/.cargo/env"
+fi
 
 # sdk ie jvm
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export SDKMAN_DIR="$HOME/.sdkman"
-
-# node
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# go
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
-
-# brew (for mac)
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-	export PATH="/opt/homebrew/bin:$PATH"
+if [ -d $HOME/.sdkman/ ]; then
+	[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+	export SDKMAN_DIR="$HOME/.sdkman"
 fi
