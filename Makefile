@@ -143,6 +143,13 @@ nvim-mac:  ## mac install and setup for nvim-mac
 
 ### UNIVERSAL
 
+hugo: ## install hugo for blog development
+	# use /usr/local/bin/
+	curl -LO https://github.com/gohugoio/hugo/releases/download/v0.146.5/hugo_0.146.5_linux-amd64.tar.gz
+	sudo rm -rf /usr/bin/hugo
+	sudo tar -C /usr/bin -xzf hugo_0.146.5_linux-amd64.tar.gz
+	rm -rf $(CURDIR)/hugo_0.146.5_linux-amd64.tar.gz
+
 go: ## install go
 	curl -Lo go.tar.gz "https://golang.org/dl/go1.22.5.linux-amd64.tar.gz"
 	tar xf go.tar.gz go
