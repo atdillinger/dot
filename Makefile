@@ -140,16 +140,13 @@ $(HUGO): ## install hugo for blog development
 	rm -rf $(CURDIR)/hugo_0.146.5_linux-amd64.tar.gz
 
 
-GO=$(HOME)/.local/bin/go/bin/go
+GO=$(HOME)/.local/go/bin/go
 $(GO): ## install go
 	rm -rf $(HOME)/.local/go/
 	curl -Lo $(CURDIR)/go.tar.gz "https://golang.org/dl/go1.22.5.linux-amd64.tar.gz"
 	tar xf $(CURDIR)/go.tar.gz go
 	mv $(CURDIR)/go $(HOME)/.local
 	rm $(CURDIR)/go.tar.gz
-
-go:
-	$(MAKE) $(GO)
 
 node: ## install node
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
