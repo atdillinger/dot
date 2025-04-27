@@ -136,7 +136,9 @@ UVX=$(HOME)/.local/bin/uvx
 $(UV) $(UVX): ## install rye for python development
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
-rust: ## install rust
+RUSTUP=$(HOME)/.cargo/bin/rustup
+RUSTC=$(HOME)/.cargo/bin/rustc
+$(RUSTUP) $(RUSTC): ## install rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	mkdir -p $(HOME)/.zfunc/;
 	rustup completions zsh cargo > ~/.zfunc/_cargo;
@@ -171,6 +173,7 @@ all: ## do it all
 	$(MAKE) $(SDKMAN)
 	$(MAKE) $(SQLITE) $(SQLITE_ANALYZER) $(SQLDIFF)
 	$(MAKE) $(UV) $(UVX)
+	$(MAKE) $(RUSTUP)
 
 # ubuntu
 # popos
