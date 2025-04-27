@@ -56,9 +56,9 @@ fi
 
 
 # go
-if which go > /dev/null; then
+if [ -f $HOME/.local/go/bin/go ]; then
 	export GOPATH=$HOME/go
-	export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+	export PATH=$PATH:$HOME/.local/go/bin:$GOPATH/bin
 fi
 
 # kubectl

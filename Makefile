@@ -134,17 +134,22 @@ nvim-mac:  ## mac install and setup for nvim-mac
 
 HUGO=$(HOME)/.local/bin/hugo
 $(HUGO): ## install hugo for blog development
+	rm -rf $(HOME)/.local/bin/hugo
 	curl -LO https://github.com/gohugoio/hugo/releases/download/v0.146.5/hugo_0.146.5_linux-amd64.tar.gz
-	sudo rm -rf $(HOME)/.local/bin/hugo
-	sudo tar -C $(HOME)/.local/bin -xzf hugo_0.146.5_linux-amd64.tar.gz
+	tar -C $(HOME)/.local/bin -xzf hugo_0.146.5_linux-amd64.tar.gz
 	rm -rf $(CURDIR)/hugo_0.146.5_linux-amd64.tar.gz
 
-go: ## install go
-	curl -Lo go.tar.gz "https://golang.org/dl/go1.22.5.linux-amd64.tar.gz"
-	tar xf go.tar.gz go
-	sudo chown -R root:root $(CURDIR)/go
-	sudo mv $(CURDIR)/go /usr/local
+
+GO=$(HOME)/.local/bin/go/bin/go
+$(GO): ## install go
+	rm -rf $(HOME)/.local/go/
+	curl -Lo $(CURDIR)/go.tar.gz "https://golang.org/dl/go1.22.5.linux-amd64.tar.gz"
+	tar xf $(CURDIR)/go.tar.gz go
+	mv $(CURDIR)/go $(HOME)/.local
 	rm $(CURDIR)/go.tar.gz
+
+go:
+	$(MAKE) $(GO)
 
 node: ## install node
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
@@ -170,6 +175,10 @@ sqlite: ## install sqlite
 	curl "https://www.sqlite.org/2024/sqlite-tools-linux-x64-3460000.zip" -o "sqlite.zip"
 	unzip sqlite.zip -d $(HOME)/.local/bin/
 	rm sqlite.zip
+
+all: ## do it all
+	$(MAKE) $(HUGO)
+	$(MAKE) $(GO)
 
 .PHONY: help
 help:
