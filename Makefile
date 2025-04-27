@@ -139,7 +139,6 @@ $(HUGO): ## install hugo for blog development
 	tar -C $(HOME)/.local/bin -xzf hugo_0.146.5_linux-amd64.tar.gz
 	rm -rf $(CURDIR)/hugo_0.146.5_linux-amd64.tar.gz
 
-
 GO=$(HOME)/.local/go/bin/go
 $(GO): ## install go
 	rm -rf $(HOME)/.local/go/
@@ -160,7 +159,8 @@ rust: ## install rust
 	mkdir -p $(HOME)/.zfunc/;
 	rustup completions zsh cargo > ~/.zfunc/_cargo;
 
-sdkman:  ## install sdkman to manage jvm
+SDKMAN=$(HOME)/.sdkman/bin/sdkman-init.sh
+$(SDKMAN):  ## install sdkman to manage jvm
 	curl -s "https://get.sdkman.io" | bash
 	( \
 		source $(HOME)/.sdkman/bin/sdkman-init.sh; \
@@ -176,6 +176,7 @@ sqlite: ## install sqlite
 all: ## do it all
 	$(MAKE) $(HUGO)
 	$(MAKE) $(GO)
+	$(MAKE) $(SDKMAN)
 
 .PHONY: help
 help:
