@@ -1,7 +1,6 @@
 SHELL := /bin/zsh
 .DEFAULT_GOAL := help
 
-
 nvim-linux64:  ## nvim-linux64
 	sudo apt install gcc;
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz;
@@ -23,14 +22,12 @@ nvim-linux64:  ## nvim-linux64
 	$(MAKE) python;
 	rye install ruff-lsp;
 
-
 dotfiles: ## dotfiles
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git" ); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
-
 
 git-config: ## configure git
 	git config --global remote.origin.prune true;
@@ -46,7 +43,6 @@ git-config: ## configure git
 	mkdir -p $(HOME)/.config/git;
 	ln -sfn $(CURDIR)/gitignore $(HOME)/.config/git/ignore;
 
-
 gcm: ## install and configure git credential manager
 	curl -Lo /tmp/gcm.tar.gz "https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.6.1/gcm-linux_amd64.2.6.1.tar.gz";
 	tar xf /tmp/gcm.tar.gz /tmp/git-credential-manager;
@@ -56,8 +52,6 @@ gcm: ## install and configure git credential manager
 	gpg --full-generate-key;
 	pass init `gpg --list-secret-keys --keyid-format=long | grep sec | awk '{print $2}' | sed  's/rsa3072\///g'`;
 	git config --global credential.credentialStore gpg;
-
-
 
 docker: ## install and configure docker
 	for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do \
@@ -81,12 +75,10 @@ docker: ## install and configure docker
 	sudo usermod -aG docker $USER
 	newgrp docker
 
-
 tmuxinator: ## install tmuxinator
 	gem install tmuxinator
 	mkdir -p $(HOME)/.zfunc/
 	wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O ~/.zfunc/_tmuxinator
-
 
 ubuntu: ## base ubuntu installs
 	sudo apt install \
@@ -100,7 +92,6 @@ ubuntu: ## base ubuntu installs
 		xclip \
 		xsel;
 	$(MAKE) tmuxinator;
-
 
 popos: ## popos setup
 	sudo apt install \
@@ -121,7 +112,6 @@ popos: ## popos setup
 	sudo reboot now;
 	sudo apt install gnome-tweaks;
 
-
 mac:  # mac
 	brew install direnv \
 		jq \
@@ -129,7 +119,6 @@ mac:  # mac
 		direnv \
 		tmux \
 		tmuxinator;
-
 
 nvim-mac:  ## mac install and setup for nvim-mac
 	brew install neovim
@@ -143,11 +132,11 @@ nvim-mac:  ## mac install and setup for nvim-mac
 
 ### UNIVERSAL
 
-hugo: ## install hugo for blog development
-	# use /usr/local/bin/
+HUGO=$(HOME)/.local/bin/hugo
+$(HUGO): ## install hugo for blog development
 	curl -LO https://github.com/gohugoio/hugo/releases/download/v0.146.5/hugo_0.146.5_linux-amd64.tar.gz
-	sudo rm -rf /usr/bin/hugo
-	sudo tar -C /usr/bin -xzf hugo_0.146.5_linux-amd64.tar.gz
+	sudo rm -rf $(HOME)/.local/bin/hugo
+	sudo tar -C $(HOME)/.local/bin -xzf hugo_0.146.5_linux-amd64.tar.gz
 	rm -rf $(CURDIR)/hugo_0.146.5_linux-amd64.tar.gz
 
 go: ## install go
@@ -164,12 +153,10 @@ node: ## install node
 python: ## install rye for python development
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
-
 rust: ## install rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	mkdir -p $(HOME)/.zfunc/;
 	rustup completions zsh cargo > ~/.zfunc/_cargo;
-
 
 sdkman:  ## install sdkman to manage jvm
 	curl -s "https://get.sdkman.io" | bash
@@ -183,8 +170,6 @@ sqlite: ## install sqlite
 	curl "https://www.sqlite.org/2024/sqlite-tools-linux-x64-3460000.zip" -o "sqlite.zip"
 	unzip sqlite.zip -d $(HOME)/.local/bin/
 	rm sqlite.zip
-
-
 
 .PHONY: help
 help:

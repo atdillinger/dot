@@ -41,7 +41,6 @@ source $ZSH/oh-my-zsh.sh
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Add binaries to PATH
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
