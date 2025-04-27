@@ -42,6 +42,8 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Add binaries to PATH
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # brew (for mac)
 if [[ "$OSTYPE" =~ ^darwin ]]; then
@@ -78,9 +80,9 @@ fi
 
 # python
 # switch with uv
-if [ -d $HOME/.rye/ ]; then
-	source "$HOME/.rye/env"
-	eval "$(~/.rye/shims/rye self completion -s zsh)"
+if [ -d $HOME/.uv/ ]; then
+	eval "$(uv generate-shell-completion zsh)"
+	eval "$(uvx --generate-shell-completion zsh)"
 fi
 
 # ruby
