@@ -4,6 +4,11 @@ mkd() {
 	cd "$@" || exit
 }
 
+_path() {
+	echo "${PATH//:/$'\n'}"
+}
+
+
 # Make a temporary directory and enter it
 tmpd() {
 	local dir
