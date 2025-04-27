@@ -27,6 +27,25 @@
 1. if `"$OSTYPE" =~ ^darwin` 
 `make mac`
 `make nvim-mac`
+```
+mac:  # mac
+	brew install direnv \
+		jq \
+		yq \
+		direnv \
+		tmux \
+		tmuxinator;
+
+nvim-mac:  ## mac install and setup for nvim-mac
+	brew install neovim
+	git clone https://github.com/atdillinger/kickstart.nvim.git $(HOME)/.config/nvim
+	rm -rf ~/.config/nvim/.git
+	rm -rf ~/.config/nvim/.git
+	brew install jesseduffield/lazygit/lazygit
+	brew install ripgrep
+	git config --global core.editor nvim
+	cargo install fd-find
+```
 
 1. if `"$OSTYPE" =~ ^linux` 
     1. make gcm

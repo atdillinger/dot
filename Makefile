@@ -1,7 +1,6 @@
 SHELL := /bin/zsh
 .DEFAULT_GOAL := help
 
-
 nvim-linux64:  ## nvim-linux64
 	sudo apt install gcc;
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz;
@@ -113,26 +112,6 @@ popos: ## popos setup
 	sudo reboot now;
 	sudo apt install gnome-tweaks;
 
-mac:  # mac
-	brew install direnv \
-		jq \
-		yq \
-		direnv \
-		tmux \
-		tmuxinator;
-
-nvim-mac:  ## mac install and setup for nvim-mac
-	brew install neovim
-	git clone https://github.com/atdillinger/kickstart.nvim.git $(HOME)/.config/nvim
-	rm -rf ~/.config/nvim/.git
-	rm -rf ~/.config/nvim/.git
-	brew install jesseduffield/lazygit/lazygit
-	brew install ripgrep
-	git config --global core.editor nvim
-	cargo install fd-find
-
-### UNIVERSAL
-
 HUGO=$(HOME)/.local/bin/hugo
 $(HUGO): ## install hugo for blog development
 	rm -rf $(HOME)/.local/bin/hugo
@@ -183,11 +162,16 @@ clean-sqlite:
 	rm $(SQLITEANALYZER);
 	rm $(SQLDIFF);
 
+.PHONY: all
 all: ## do it all
 	$(MAKE) $(HUGO)
 	$(MAKE) $(GO)
 	$(MAKE) $(SDKMAN)
 	$(MAKE) $(SQLITE) $(SQLITE_ANALYZER) $(SQLDIFF)
+
+# ubuntu
+# popos
+# mac is in readme? simpler
 
 .PHONY: help
 help:
