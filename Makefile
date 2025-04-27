@@ -131,7 +131,9 @@ node: ## install node
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 	#$(HOME)/.nvm/nvm install node
 
-python: ## install rye for python development
+UV=$(HOME)/.local/bin/uv
+UVX=$(HOME)/.local/bin/uvx
+$(UV) $(UVX): ## install rye for python development
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
 rust: ## install rust
@@ -168,6 +170,7 @@ all: ## do it all
 	$(MAKE) $(GO)
 	$(MAKE) $(SDKMAN)
 	$(MAKE) $(SQLITE) $(SQLITE_ANALYZER) $(SQLDIFF)
+	$(MAKE) $(UV) $(UVX)
 
 # ubuntu
 # popos
