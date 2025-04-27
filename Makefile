@@ -1,6 +1,7 @@
 SHELL := /bin/zsh
 .DEFAULT_GOAL := help
 
+
 nvim-linux64:  ## nvim-linux64
 	sudo apt install gcc;
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz;
@@ -168,15 +169,25 @@ $(SDKMAN):  ## install sdkman to manage jvm
 		sdk use java 21.0.2; \
 	)
 
-sqlite: ## install sqlite
-	curl "https://www.sqlite.org/2024/sqlite-tools-linux-x64-3460000.zip" -o "sqlite.zip"
-	unzip sqlite.zip -d $(HOME)/.local/bin/
+SQLITE=$(HOME)/.local/bin/sqlite3
+SQLITEANALYZER=$(HOME)/.local/bin/sqlite3_analyzer
+SQLDIFF=$(HOME)/.local/bin/sqldiff
+$(SQLITE) $(SQLITE_ANALYZER) $(SQLDIFF): ## install sqlite
+	curl "https://www.sqlite.org/2024/sqlite-tools-linux-x64-3460000.zip" -o $(CURDIR)/sqlite.zip
+	unzip $(CURDIR)/sqlite.zip -d $(HOME)/.local/bin/
 	rm sqlite.zip
+
+.PHONY: clean-sqlite
+clean-sqlite:
+	rm $(SQLITE);
+	rm $(SQLITEANALYZER);
+	rm $(SQLDIFF);
 
 all: ## do it all
 	$(MAKE) $(HUGO)
 	$(MAKE) $(GO)
 	$(MAKE) $(SDKMAN)
+	$(MAKE) $(SQLITE) $(SQLITE_ANALYZER) $(SQLDIFF)
 
 .PHONY: help
 help:
