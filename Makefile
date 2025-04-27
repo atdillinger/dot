@@ -1,7 +1,8 @@
 SHELL := /bin/zsh
 .DEFAULT_GOAL := help
 
-nvim-linux64:  ## nvim-linux64
+nvim:  ## nvim-linux64
+	# move to .local/bin
 	sudo apt install gcc;
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz;
 	sudo rm -rf /usr/bin/nvim;
@@ -39,11 +40,11 @@ git-config: ## configure git
 	git config --global advice.skippedCherryPicks false;
 	git config --global help.autocorrect immediate;
 	git config --global rerere.enabled true;
-	git config --global user.name dillinger;
 	mkdir -p $(HOME)/.config/git;
 	ln -sfn $(CURDIR)/gitignore $(HOME)/.config/git/ignore;
 
 gcm: ## install and configure git credential manager
+	# move to .local/bin
 	curl -Lo /tmp/gcm.tar.gz "https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.6.1/gcm-linux_amd64.2.6.1.tar.gz";
 	tar xf /tmp/gcm.tar.gz /tmp/git-credential-manager;
 	sudo install /tmp/git-credential-manager /usr/local/bin;
@@ -75,42 +76,27 @@ docker: ## install and configure docker
 	sudo usermod -aG docker $USER
 	newgrp docker
 
+ruby: ## install ruby
+	sudo apt update
+	sudo apt install \
+		libyaml-dev \
+		libz-dev \
+		libssl-dev \
+		build-essential;
+	( \
+		git clone https://github.com/rbenv/rbenv.git $(HOME)/.rbenv; \
+		git clone https://github.com/rbenv/ruby-build.git $(HOME)/.rbenv/plugins/ruby-build; \
+		$(HOME)/.rbenv/bin/rbenv init; \
+		$(HOME)/.rbenv/bin/rbenv install 3.3.1; \
+		$(HOME)/.rbenv/bin/rbenv global 3.3.1; \
+	)
+
+TMUXINATOR=$(HOME)/.rbenv/shims/tmuxinator
 tmuxinator: ## install tmuxinator
+	$(MAKE) ruby
 	gem install tmuxinator
 	mkdir -p $(HOME)/.zfunc/
 	wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O ~/.zfunc/_tmuxinator
-
-ubuntu: ## base ubuntu installs
-	sudo apt install \
-		dos2unix \
-		shellcheck \
-		tmux \
-		shellcheck \
-		zip \
-		unzip \
-		direnv \
-		xclip \
-		xsel;
-	$(MAKE) tmuxinator;
-
-popos: ## popos setup
-	sudo apt install \
-		build-essential \
-		apt-transport-https \
-		ca-certificates \
-		curl \
-		software-properties-common \
-		apache2-utils \
-		make \
-		chromium-browser \
-		firefox \
-		gnome-tweaks \
-		gnome-shell-extensions \
-		dconf-editor;
-	sudo apt autoremove -y;
-	sudo apt autoclean -y;
-	sudo reboot now;
-	sudo apt install gnome-tweaks;
 
 HUGO=$(HOME)/.local/bin/hugo
 $(HUGO): ## install hugo for blog development
@@ -127,7 +113,8 @@ $(GO): ## install go
 	mv $(CURDIR)/go $(HOME)/.local
 	rm $(CURDIR)/go.tar.gz
 
-node: ## install node
+NVM=$(HOME)/.nvm/nvm.sh
+$(NVM): ## install node
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 	#$(HOME)/.nvm/nvm install node
 
@@ -174,10 +161,38 @@ all: ## do it all
 	$(MAKE) $(SQLITE) $(SQLITE_ANALYZER) $(SQLDIFF)
 	$(MAKE) $(UV) $(UVX)
 	$(MAKE) $(RUSTUP)
+	$(MAKE) $(NVM)
 
-# ubuntu
-# popos
-# mac is in readme? simpler
+popos: ## popos setup
+	sudo apt install \
+		build-essential \
+		apt-transport-https \
+		ca-certificates \
+		curl \
+		software-properties-common \
+		apache2-utils \
+		make \
+		chromium-browser \
+		firefox \
+		gnome-tweaks \
+		gnome-shell-extensions \
+		dconf-editor;
+	sudo apt autoremove -y;
+	sudo apt autoclean -y;
+	sudo reboot now;
+	sudo apt install gnome-tweaks;
+
+ubuntu: ## base ubuntu installs
+	sudo apt install \
+		dos2unix \
+		shellcheck \
+		tmux \
+		shellcheck \
+		zip \
+		unzip \
+		direnv \
+		xclip \
+		xsel;
 
 .PHONY: help
 help:
