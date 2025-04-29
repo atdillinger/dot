@@ -78,14 +78,12 @@ if [ -d $HOME/.nvm/ ]; then
 fi
 
 # python
-# switch with uv
 if [ -d $HOME/.uv/ ]; then
 	eval "$(uv generate-shell-completion zsh)"
 	eval "$(uvx --generate-shell-completion zsh)"
 fi
 
 # ruby
-# remove after website
 if [[ "$OSTYPE" =~ ^linux ]]; then
 	eval "$(~/.rbenv/bin/rbenv init - zsh)"
 fi
