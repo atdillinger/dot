@@ -30,6 +30,8 @@ dotfiles: ## dotfiles
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
 
+
+.PHONY: configure git
 git-config: ## configure git
 	git config --global remote.origin.prune true;
 	git config --global log.abbrevCommit true;
