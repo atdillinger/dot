@@ -6,20 +6,21 @@
 > It assumed that the machine is a mac.
 > See mac instructions below.
 
-1. `sudo apt install zsh && chsh -s $(which zsh)`
-1. `sudo apt update`
-1. `sudo apt upgrade`
-1. clone this repository
-1. for `ubuntu` _linux_ distributions run `make ubuntu`
-1. for `ubuntu` _linux_ distributions run `make popos`
-1. `make dotfiles`
-1. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-1. for linux machines run `make nvim`
-1. run `make git-config`
-1. for _linux_ machines run `make gcm`
-1. run `git config --global user.name dillinger`
-1. for _linux_ machines run `make tmuxinator`
-1. run`make all`
+1. Run `sudo apt install zsh && chsh -s $(which zsh)`
+1. Run `sudo apt update`
+1. Run `sudo apt upgrade`
+1. Clone this repository
+1. For `ubuntu` _linux_ distributions run `make ubuntu`
+1. For `ubuntu` _linux_ distributions run `make popos`
+1. Run `make dotfiles`
+1. Run `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+1. For linux machines run `make nvim`
+1. Run `make git-config`
+1. For _linux_ machines run `make gcm`
+1. Run `git config --global user.name dillinger`
+1. For _linux_ machines run `make tmuxinator`
+1. Run `make all`
+1. Run `make docker`
 
 ## Mac Setup
 
