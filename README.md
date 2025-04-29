@@ -20,7 +20,6 @@
 1. Run `git config --global user.name dillinger`
 1. For _linux_ machines run `make tmuxinator`
 1. Run `make all`
-1. Run `make docker`
 
 ## Mac Setup
 
