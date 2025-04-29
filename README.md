@@ -9,15 +9,17 @@
 1. `sudo apt install zsh && chsh -s $(which zsh)`
 1. `sudo apt update`
 1. `sudo apt upgrade`
-1. `make ubuntu`
-1. `make popos`
+1. clone this repository
+1. for `ubuntu` _linux_ distributions run `make ubuntu`
+1. for `ubuntu` _linux_ distributions run `make popos`
 1. `make dotfiles`
+1. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 1. for linux machines run `make nvim`
-1. `make git-config`
+1. run `make git-config`
 1. for _linux_ machines run `make gcm`
-1. `git config --global user.name dillinger;`
+1. run `git config --global user.name dillinger`
 1. for _linux_ machines run `make tmuxinator`
-1. `make all`
+1. run`make all`
 
 ## Mac Setup
 
