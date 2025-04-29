@@ -23,8 +23,15 @@ nvim:  ## nvim-linux64
 	$(MAKE) python;
 	rye install ruff-lsp;
 
+OMZ=$(HOME)/.oh-my-zsh/oh-my-zsh.sh
+OMZ:
+	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
+
+.PHONY: wrapper recipe for oh my zsh
+ohmyzsh: ## omz
+	$(MAKE) $(OMZ)
+
 dotfiles: ## dotfiles
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git" ); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
