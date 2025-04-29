@@ -76,7 +76,8 @@ docker: ## install and configure docker
 	sudo usermod -aG docker $USER
 	newgrp docker
 
-ruby: ## install ruby
+RBENV=$(HOME)/.rbenv/bin/rbenv
+$(RBENV): ## install ruby
 	sudo apt update
 	sudo apt install \
 		libyaml-dev \
@@ -93,7 +94,7 @@ ruby: ## install ruby
 
 TMUXINATOR=$(HOME)/.rbenv/shims/tmuxinator
 tmuxinator: ## install tmuxinator
-	$(MAKE) ruby
+	$(MAKE) $(RBENV)
 	gem install tmuxinator
 	mkdir -p $(HOME)/.zfunc/
 	wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O ~/.zfunc/_tmuxinator
@@ -162,6 +163,7 @@ all: ## do it all
 	$(MAKE) $(UV) $(UVX)
 	$(MAKE) $(RUSTUP)
 	$(MAKE) $(NVM)
+	$(MAKE) $(RBENV)
 
 popos: ## popos setup
 	sudo apt install \
