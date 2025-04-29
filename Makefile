@@ -52,7 +52,8 @@ git-config: ## configure git
 	mkdir -p $(HOME)/.config/git;
 	ln -sfn $(CURDIR)/gitignore $(HOME)/.config/git/ignore;
 
-gcm: ## install and configure git credential manager
+GCM=/usr/local/bin/git-credential-manager
+$(GCM): ## install and configure git credential manager
 	# move to .local/bin
 	curl -Lo /tmp/gcm.tar.gz "https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.6.1/gcm-linux_amd64.2.6.1.tar.gz";
 	tar xf /tmp/gcm.tar.gz /tmp/git-credential-manager;
@@ -62,6 +63,10 @@ gcm: ## install and configure git credential manager
 	gpg --full-generate-key;
 	pass init `gpg --list-secret-keys --keyid-format=long | grep sec | awk '{print $2}' | sed  's/rsa3072\///g'`;
 	git config --global credential.credentialStore gpg;
+
+.PHONY: wrappre recipe for git-credential-manager
+gcm:
+	$(MAKE) $(GCM)
 
 docker: ## install and configure docker
 	for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do \
