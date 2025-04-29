@@ -31,6 +31,7 @@ OMZ:
 ohmyzsh: ## omz
 	$(MAKE) $(OMZ)
 
+.PHONY: link dotfiles to home dir
 dotfiles: ## dotfiles
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".git" ); do \
 		f=$$(basename $$file); \
