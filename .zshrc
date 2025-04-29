@@ -50,9 +50,7 @@ if [[ "$OSTYPE" =~ ^darwin ]]; then
 fi
 
 # direnv
-if [[ "$OSTYPE" =~ ^linux ]]; then
-    eval "$(direnv hook zsh)"
-fi
+eval "$(direnv hook zsh)"
 
 
 # go
