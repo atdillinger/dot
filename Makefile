@@ -119,7 +119,6 @@ $(GO): ## install go
 NVM=$(HOME)/.nvm/nvm.sh
 $(NVM): ## install node
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-	#$(HOME)/.nvm/nvm install node
 
 UV=$(HOME)/.local/bin/uv
 UVX=$(HOME)/.local/bin/uvx
