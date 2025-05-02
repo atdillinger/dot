@@ -115,6 +115,11 @@ UVX=$(HOME)/.local/bin/uvx
 $(UV) $(UVX): ## install rye for python development
 	curl -LsSf https://astral.sh/uv/install.sh | sh
 
+
+RUFF=$(HOME)/.local/bin/ruff
+$(ruff): ## install ruff
+	curl -LsSf https://astral.sh/ruff/install.sh | sh
+
 RUSTUP=$(HOME)/.cargo/bin/rustup
 RUSTC=$(HOME)/.cargo/bin/rustc
 $(RUSTUP) $(RUSTC): ## install rust
@@ -152,6 +157,7 @@ all: ## do it all
 	$(MAKE) $(SDKMAN)
 	$(MAKE) $(SQLITE) $(SQLITE_ANALYZER) $(SQLDIFF)
 	$(MAKE) $(UV) $(UVX)
+	$(MAKE) $(RUFF)
 	$(MAKE) $(RUSTUP)
 	$(MAKE) $(NVM)
 	$(MAKE) $(RBENV)
