@@ -94,9 +94,13 @@ tmuxinator: ## install tmuxinator
 HUGO=$(HOME)/.local/bin/hugo
 $(HUGO): ## install hugo for blog development
 	rm -rf $(HOME)/.local/bin/hugo
-	curl -LO https://github.com/gohugoio/hugo/releases/download/v0.146.5/hugo_0.146.5_linux-amd64.tar.gz
-	tar -C $(HOME)/.local/bin -xzf hugo_0.146.5_linux-amd64.tar.gz
-	rm -rf $(CURDIR)/hugo_0.146.5_linux-amd64.tar.gz
+	curl -LO https://github.com/gohugoio/hugo/releases/download/v0.147.3/hugo_extended_0.147.3_linux-amd64.tar.gz
+	tar -C $(HOME)/.local/bin -xzf hugo_extended_0.147.3_linux-amd64.tar.gz
+	rm -rf $(CURDIR)/hugo_extended_0.147.3_linux-amd64.tar.gz
+
+.PHONY: hugo
+hugo:
+	$(MAKE) $(HUGO)
 
 GO=$(HOME)/.local/go/bin/go
 $(GO): ## install go
