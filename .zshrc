@@ -17,7 +17,7 @@ unset file
 autoload -Uz compinit && compinit
 
 HISTTIMEFORMAT="%F %T "
-ENABLE_CORRECTION="true"
+unsetopt correct
 
 export LANG=en_US.UTF-8
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=true
