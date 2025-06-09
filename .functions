@@ -9,7 +9,8 @@ _path() {
 }
 
 _urlencode() {
-	python3 -c "import sys, urllib.parse ; print(urllib.parse.quote_plus(sys.argv[1]));"
+	arg1=$1
+	python3 -c "import sys, urllib.parse ; print(urllib.parse.quote_plus('$1'));"
 }
 
 
