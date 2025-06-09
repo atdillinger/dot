@@ -8,6 +8,10 @@ _path() {
 	echo "${PATH//:/$'\n'}"
 }
 
+_urlencode() {
+	python3 -c "import sys, urllib.parse ; print(urllib.parse.quote_plus(sys.argv[1]));"
+}
+
 
 # Make a temporary directory and enter it
 tmpd() {
