@@ -49,6 +49,7 @@ git-config: ## configure git
 	git config --global advice.skippedCherryPicks false;
 	git config --global help.autocorrect immediate;
 	git config --global rerere.enabled true;
+	git config --global core.excludesFile '$(HOME)/.config/git/ignore'
 	mkdir -p $(HOME)/.config/git;
 	ln -sfn $(CURDIR)/gitignore $(HOME)/.config/git/ignore;
 

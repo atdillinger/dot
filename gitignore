@@ -1,2 +1,4 @@
 .envrc
 .well-known/*
+.DS_Store
+.obsidian/
