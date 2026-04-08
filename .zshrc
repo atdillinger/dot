@@ -65,7 +65,7 @@ if which kubectl > /dev/null; then
 fi
 
 # neovim
-export PATH="$PATH:/usr/bin/nvim-linux64/bin"
+export PATH="$PATH:/usr/bin/nvim-linux-x86_64/bin"
 export EDITOR='nvim'
 
 # node

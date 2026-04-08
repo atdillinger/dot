@@ -4,21 +4,21 @@ SHELL := /bin/zsh
 nvim:  ## nvim-linux64
 	# move to .local/bin
 	sudo apt install gcc;
-	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz;
+	curl -LO https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-x86_64.tar.gz;
 	sudo rm -rf /usr/bin/nvim;
-	sudo tar -C /usr/bin -xzf nvim-linux64.tar.gz;
-	rm -rf $(CURDIR)/nvim-linux64.tar.gz;
+	sudo tar -C /usr/bin -xzf nvim-linux-x86_64.tar.gz;
+	rm -rf $(CURDIR)/nvim-linux-x86_64.tar.gz;
 	git clone https://github.com/atdillinger/kickstart.nvim.git $(HOME)/.config/nvim;
-	sudo install lazygit /usr/local/bin;
 	( \
-		curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_0.42.0_Linux_x86_64.tar.gz"; \
+		curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_linux_x86_64.tar.gz"; \
 		tar xf lazygit.tar.gz lazygit; \
 	)
+	sudo install lazygit /usr/local/bin;
 	rm $(CURDIR)/lazygit;
 	rm $(CURDIR)/lazygit.tar.gz;
 	sudo apt-get install ripgrep;
 	git config --global core.editor nvim;
-	$(MAKE) rust;
+	$(MAKE) $(RUSTUP);
 	cargo install fd-find;
 	$(MAKE) python;
 	rye install ruff-lsp;
