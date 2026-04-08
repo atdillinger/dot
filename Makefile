@@ -20,7 +20,7 @@ nvim:  ## nvim-linux64
 	git config --global core.editor nvim;
 	$(MAKE) $(RUSTUP);
 	cargo install fd-find;
-	$(MAKE) python;
+	$(MAKE) $(UV) $(UVX);
 	rye install ruff-lsp;
 
 OMZ=$(HOME)/.oh-my-zsh/oh-my-zsh.sh
