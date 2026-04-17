@@ -20,6 +20,7 @@ nvim:  ## nvim-linux64
 	git config --global core.editor nvim;
 	$(MAKE) $(RUSTUP);
 	cargo install fd-find;
+	cargo install sleek;
 	$(MAKE) $(UV) $(UVX);
 	rye install ruff-lsp;
 
