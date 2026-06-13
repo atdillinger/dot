@@ -8,3 +8,4 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias l='ls -lF'
 alias ll='ls -alF'
+alias which='which -a'
