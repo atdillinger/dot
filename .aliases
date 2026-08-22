@@ -9,3 +9,4 @@ alias .....="cd ../../../.."
 alias l='ls -lF'
 alias ll='ls -alF'
 alias which='which -a'
+alias attach='tmux a -t 1'
